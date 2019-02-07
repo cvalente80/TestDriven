@@ -8,7 +8,7 @@ public class TestTemplate {
 	@Test
 	public void oneVariale() throws Exception {
 		
-		Template 
+		Template mytemplate = new Template();
 		
 	}
 	
