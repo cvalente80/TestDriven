@@ -1,6 +1,11 @@
 package testJunit.com;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.junit.internal.Throwables;
+
 import java.util.Map;
 import java.util.Map.Entry;;;
 
@@ -22,17 +27,39 @@ public class Template {
 	
 	public String evaluate(){
 		
-		String result = templateText;
+		String result = replaceVariables();		
 		
-		for (Entry<String,String> entry: variables.entrySet()){
-		
-			String regex = "\\$\\{" + entry.getKey() + "\\}";
-			result = result.replaceAll(regex, entry.getValue());
-			
-		}		
+		checkForMissingresult(result);	
 		return result;
 		
-	}	
+	}
+	
+	private String replaceVariables() {
+	
+		String result = templateText;
+		
+		for (Entry<String,String> entry: variables.entrySet()){		
+			String regex = "\\$\\{" + entry.getKey() + "\\}";
+			result = result.replaceAll(regex, entry.getValue());
+		}
+		return result;
+		
+	}
+	
+	
+	private void checkForMissingresult(String result){
+		
+		Matcher m = Pattern.compile(".*\\$\\{.+\\}.*").matcher(result);
+		if(m.find()) {
+			throw new MissingValueException("no value for " + m.group());
+		}		
+			
+		
+	}
+	
+	
+		
+	
 	
 
 }

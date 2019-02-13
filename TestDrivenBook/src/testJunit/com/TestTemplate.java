@@ -49,7 +49,39 @@ public class TestTemplate {
 		
 	}
 	
+	//Testing for an exception
 	
+	/*@Test
+	public void missingValueRaisesException() throws Exception{
+		try{
+		new Template("${Foo}").evaluate();
+		fail("evaluate() should throw an exceptio if a variable was left without value");
+		}catch (MissingValueException expected){
+			
+		}			
+	}
+	*/
+	/*	
+	@Test(expected = MissingValueExpection.class)
+	public void missingValueRaisesExceptionII() throws Exception{
+		
+		new Template("${Foo}").evaluate();		
+		
+	}*/
+		
+	//testing for an expected exception
+	
+	@Test	
+	public void missingValueRaisesException() throws Exception {
+		
+		try {
+			new Template("${foo}").evaluate();
+			fail("evaluate() should throw an exception if "
+			+ "a variable was left without value!");
+		}catch(MissingValueException expected) {
+			assertEquals("no value for ${foo}", expected.getMessage());
+		}
+	}
 	
 	
 
