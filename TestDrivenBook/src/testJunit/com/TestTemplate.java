@@ -19,7 +19,7 @@ public class TestTemplate {
 	@Test
 	public void oneVariale() throws Exception {
 		
-		Template template = new Template("Hello, ${name}");
+		Template template = new Template("Hello, ${name}");                                                                                                                     
 		template.set("name", "Reader");
 		assertEquals("Hello, Reader", template.evaluate());		
 		

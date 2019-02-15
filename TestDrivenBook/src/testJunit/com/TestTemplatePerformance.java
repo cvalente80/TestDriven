@@ -25,8 +25,10 @@ public class TestTemplatePerformance {
 		long time = System.currentTimeMillis();
 		template.evaluate();
 		time = System.currentTimeMillis() - time;
-		assertTrue("Rendering the template took" + time + "ms while the target was " + expected , time <= expected);
+		assertTrue("Rendering the template took " + time + " ms while the target was " + expected , time <= expected);
 	}
+	
+	
 	
 
 }
